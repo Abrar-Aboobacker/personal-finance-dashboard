@@ -1,4 +1,6 @@
-import Test from "../pages/Test";
+
+
+import AddTransactionForm from "@/pages/AddTransaction";
 import AuthenticatedLayout from "../layout/AuthenticatedLayout/AuthenticatedLayout";
 import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
 import { appRoutes } from "../utils/routeNames";
@@ -12,12 +14,15 @@ import {
 } from "react-router-dom";
 
 const Login = lazy(() => import("../pages/auth/Login"));
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const AddTransaction = lazy(() => import("../pages/AddTransaction"));
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route element={<AuthenticatedLayout/>}>
-      <Route index path={"test"} element={<Test />} />
+      <Route index path={appRoutes.dashboard} element={<Dashboard />} />
+      <Route  path={appRoutes.addTransaction} element={<AddTransaction />} />
       </Route>
       <Route element={<DefaultLayout />}>
       <Route path="/" element={<Navigate to={appRoutes.login} />} />

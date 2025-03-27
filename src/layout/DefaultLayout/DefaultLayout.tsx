@@ -1,3 +1,4 @@
+import { appRoutes } from "../../utils/routeNames";
 import auth from "../../utils/auth";
 import React from "react";
 import {
@@ -16,7 +17,7 @@ const DefaultLayout = () => {
         let isDashboard = false;
         if (!isDashboard) {
           navigate(
-            `/dashboard`
+            `/${appRoutes.dashboard}`
           );
         }
       }

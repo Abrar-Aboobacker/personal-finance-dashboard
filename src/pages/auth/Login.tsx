@@ -14,6 +14,7 @@ import { enqueueSnackbar } from "notistack";
 import auth from "../../utils/auth";
 import { USER_INFO } from "../../constants/global";
 import { useNavigate } from "react-router-dom";
+import { appRoutes } from "../../utils/routeNames";
 type AuthMode = "login" | "register";
 
 type FormData = {
@@ -33,7 +34,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (auth.getToken()) {
-      navigate(`/dashboard`);
+      navigate(`/${appRoutes.dashboard}`);
     }
   }, [location.pathname]);
   const onSubmit = async (data: FormData) => {
@@ -73,7 +74,7 @@ const Login = () => {
           auth.set(user.user, USER_INFO, true);
           auth.setToken(user.session?.access_token, true);
           auth.setRefreshToken(user?.session?.refresh_token, true);
-          navigate("/dashboard");
+          navigate(`${appRoutes.dashboard}`);
         }
         console.log(user, "login");
         if (error) {

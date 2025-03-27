@@ -1,8 +1,6 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { AppBar, IconButton, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-
-
 
 type Props = {
   handleDrawerToggle: () => void;
@@ -12,7 +10,6 @@ const drawerWidth = 240;
 const HeaderAppBar = ({ handleDrawerToggle }: Props) => {
   const toolbarRef = useRef(null);
 
- 
   return (
     <React.Fragment>
       <AppBar

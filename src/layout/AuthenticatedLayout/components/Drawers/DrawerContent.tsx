@@ -3,6 +3,8 @@ import { Box, List, Toolbar, Typography, useTheme } from "@mui/material";
 
 import DrawerItem from "./DrawerItem";
 import { wholeMenu } from "../../data";
+import { LogOut } from "lucide-react";
+import auth from "../../../../utils/auth";
 
 export interface Props {
   drawerWidth: number;
@@ -55,7 +57,10 @@ const DrawerContent: React.FC<Props> = ({ drawerWidth }) => {
           boxShadow: "-1px -9px 6px -3px rgba(219,219,219,0.32)",
         }}
       >
-        {/* <Logout /> */}
+        <Box onClick={()=>auth.logout()} sx={{cursor:'pointer',display:'flex', gap:2}}>
+          <LogOut/>
+        <Typography>Logout</Typography>
+        </Box>
       </Toolbar>
     </Box>
   );

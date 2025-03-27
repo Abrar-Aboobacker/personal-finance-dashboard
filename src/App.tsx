@@ -1,9 +1,12 @@
-import Login from "./components/auth/Login"
+
+import Routing from "./routes/Routing";
 
 const App = () => {
   return (
-<Login/>
-  )
-}
+    <div className="relative min">
+      <Routing />
+    </div>
+  );
+};
 
-export default App
+export default App;

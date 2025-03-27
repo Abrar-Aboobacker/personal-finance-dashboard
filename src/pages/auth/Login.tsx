@@ -1,10 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Input } from "../ui/input";
+import { Button } from "../../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../../components/ui/card";
+import { Input } from "../../components/ui/input";
 import pic from "../../assets/11668644_20945238.png";
-
+import { supabase } from "../../lib/supabase";
+import { enqueueSnackbar } from "notistack";
+import auth from "../../utils/auth";
+import { USER_INFO } from "../../constants/global";
+import { useNavigate } from "react-router-dom";
 type AuthMode = "login" | "register";
 
 type FormData = {
@@ -20,23 +29,75 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
+  const navigate = useNavigate();
 
+  React.useEffect(() => {
+    if (auth.getToken()) {
+      navigate(`/dashboard`);
+    }
+  }, [location.pathname]);
   const onSubmit = async (data: FormData) => {
     if (mode === "register" && data.password !== data.confirmPassword) {
-      alert("Passwords do not match");
+      enqueueSnackbar("Passwords do not match", {
+        variant: "error",
+        autoHideDuration: 4000,
+      });
       return;
     }
+
     try {
-      /* await onAuth(data.email, data.password, mode); */
-      console.log("Form Submitted", data);
-    } catch (error) {
-      console.error("Authentication error", error);
+      if (mode === "register") {
+        // Register User
+        const { data: user, error } = await supabase.auth.signUp({
+          email: data.email,
+          password: data.password,
+        });
+
+        if (error) {
+          throw error;
+        }
+        enqueueSnackbar(
+          "Registration successful! Check your email for verification.",
+          {
+            variant: "success",
+            autoHideDuration: 4000,
+          }
+        );
+      } else {
+        // Login User
+        const { data: user, error } = await supabase.auth.signInWithPassword({
+          email: data.email,
+          password: data.password,
+        });
+        if (user) {
+          auth.set(user.user, USER_INFO, true);
+          auth.setToken(user.session?.access_token, true);
+          auth.setRefreshToken(user?.session?.refresh_token, true);
+          navigate("/dashboard");
+        }
+        console.log(user, "login");
+        if (error) {
+          throw error;
+        }
+
+        enqueueSnackbar("Login Successful!", {
+          variant: "success",
+          autoHideDuration: 4000,
+        });
+        console.log("User:", user);
+      }
+    } catch (error: any) {
+      enqueueSnackbar(error.message, {
+        variant: "error",
+        autoHideDuration: 4000,
+      });
+      console.error("Authentication error:", error);
     }
   };
 
   return (
     <div className="grid bg-white h-screen">
-      <div className="grid-cols-[1fr_2fr_2fr] flex">
+      <div className="grid-cols-[1.5fr_2fr_2fr] flex">
         <div className="p-2">
           <p>Auth Page</p>
         </div>

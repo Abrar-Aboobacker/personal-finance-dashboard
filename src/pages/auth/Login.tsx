@@ -49,7 +49,7 @@ const Login = () => {
     try {
       if (mode === "register") {
         // Register User
-        const { data: user, error } = await supabase.auth.signUp({
+        const { data: _user, error } = await supabase.auth.signUp({
           email: data.email,
           password: data.password,
         });

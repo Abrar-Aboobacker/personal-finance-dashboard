@@ -1,6 +1,5 @@
 
 
-import AddTransactionForm from "@/pages/AddTransaction";
 import AuthenticatedLayout from "../layout/AuthenticatedLayout/AuthenticatedLayout";
 import DefaultLayout from "../layout/DefaultLayout/DefaultLayout";
 import { appRoutes } from "../utils/routeNames";

@@ -97,12 +97,16 @@ const Login = () => {
   };
 
   return (
-    <div className="grid bg-white h-screen">
+    <div className="grid bg-white h-screen ">
       <div className="grid-cols-[1.5fr_2fr_2fr] flex">
-        <div className="p-2 ">
+        <div className="hidden md:block p-2 ">
           <p>Tracker</p>
         </div>
-        <img src={pic} alt="pic" className="h-[600px] w-[600px]" />
+        <img
+          src={pic}
+          alt="pic"
+          className="h-[600px] w-[600px] hidden md:block"
+        />
         <div className="flex justify-center items-center w-screen">
           <Card className="w-full max-w-lg mx-auto">
             <CardHeader>

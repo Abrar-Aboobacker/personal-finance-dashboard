@@ -1,5 +1,7 @@
-import React from "react";
-import { AppBar,} from "@mui/material";
+import React, {  useRef } from "react";
+import { AppBar, IconButton, Toolbar } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+
 
 
 type Props = {
@@ -8,8 +10,9 @@ type Props = {
 const drawerWidth = 240;
 
 const HeaderAppBar = ({ handleDrawerToggle }: Props) => {
- 
+  const toolbarRef = useRef(null);
 
+ 
   return (
     <React.Fragment>
       <AppBar
@@ -20,7 +23,27 @@ const HeaderAppBar = ({ handleDrawerToggle }: Props) => {
           ml: { md: `${drawerWidth}px` },
           background: "none",
         }}
-      ></AppBar>
+      >
+        <Toolbar
+          ref={toolbarRef}
+          style={{
+            gap: 5,
+            background: "white",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <IconButton
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+          >
+            <MenuIcon color="primary" />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
     </React.Fragment>
   );
 };

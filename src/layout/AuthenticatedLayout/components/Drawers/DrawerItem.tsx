@@ -61,7 +61,7 @@ const DrawerItem = ({ item }: Props) => {
           sx={{
             pl: "40px",
             borderRadius: "10px",
-            backgroundColor: isActive ? theme.palette.dark.light : "none",
+            // backgroundColor: isActive ? theme.palette.dark.light : "none",
           }}
         >
           <ListItemIcon sx={{ minWidth: "30px" }}>
@@ -74,7 +74,7 @@ const DrawerItem = ({ item }: Props) => {
             primaryTypographyProps={{
               fontSize: "0.8em",
               fontWeight: "bold",
-              color: isActive ? theme.palette.dark.contrastText : "#888",
+              // color: isActive ? theme.palette.dark.contrastText : "#888",
             }}
           />
         </ListItemButton>

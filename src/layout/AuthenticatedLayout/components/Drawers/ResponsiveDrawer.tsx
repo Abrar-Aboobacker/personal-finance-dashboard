@@ -20,7 +20,7 @@ interface Props {
 
 const ResponsiveDrawer: React.FC<Props> = (props: Props) => {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, _] = React.useState(false);
   // const [isClosing, setIsClosing] = React.useState(false);
 
   // Handle drawer close action

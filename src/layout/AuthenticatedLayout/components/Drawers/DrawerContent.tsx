@@ -1,9 +1,8 @@
 import React from "react";
-import { Box, List, Toolbar, useTheme } from "@mui/material";
+import { Box, List, Toolbar, Typography, useTheme } from "@mui/material";
 
 import DrawerItem from "./DrawerItem";
 import { wholeMenu } from "../../data";
-
 
 export interface Props {
   drawerWidth: number;
@@ -25,6 +24,9 @@ const DrawerContent: React.FC<Props> = ({ drawerWidth }) => {
           justifyContent: "center",
         }}
       >
+        <Typography sx={{ fontWeight: 900, textTransform: "capitalize" }}>
+          Personal Tracker
+        </Typography>
         {/* <AppLogo /> */}
       </Toolbar>
       <List

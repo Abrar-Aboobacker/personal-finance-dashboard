@@ -99,8 +99,8 @@ const Login = () => {
   return (
     <div className="grid bg-white h-screen">
       <div className="grid-cols-[1.5fr_2fr_2fr] flex">
-        <div className="p-2">
-          <p>Auth Page</p>
+        <div className="p-2 ">
+          <p>Tracker</p>
         </div>
         <img src={pic} alt="pic" className="h-[600px] w-[600px]" />
         <div className="flex justify-center items-center w-screen">
@@ -148,7 +148,7 @@ const Login = () => {
                 )}
                 <Button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-800"
+                  className="w-full bg-purple-500 hover:bg-purple-800"
                 >
                   {mode === "login" ? "Login" : "Register"}
                 </Button>

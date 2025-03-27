@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 import MobileDrawer from "./MobileDrawer";
 import DesktopDrawer from "./DesktopDrawer";
 import DrawerContent from "./DrawerContent";
+import HeaderAppBar from "../HeaderAppBar";
 
 // Define the drawer width
 const drawerWidth = 300;
@@ -20,26 +21,26 @@ interface Props {
 
 const ResponsiveDrawer: React.FC<Props> = (props: Props) => {
   const { window } = props;
-  const [mobileOpen, _] = React.useState(false);
-  // const [isClosing, setIsClosing] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isClosing, setIsClosing] = React.useState(false);
 
   // Handle drawer close action
-  // const handleDrawerClose = () => {
-  //   setIsClosing(true);
-  //   setMobileOpen(false);
-  // };
+  const handleDrawerClose = () => {
+    setIsClosing(true);
+    setMobileOpen(false);
+  };
 
   // Reset isClosing state after drawer transition ends
-  // const handleDrawerTransitionEnd = () => {
-  //   setIsClosing(false);
-  // };
+  const handleDrawerTransitionEnd = () => {
+    setIsClosing(false);
+  };
 
   // Toggle drawer open/close state
-  // const handleDrawerToggle = () => {
-  //   if (!isClosing) {
-  //     setMobileOpen(!mobileOpen);
-  //   }
-  // };
+  const handleDrawerToggle = () => {
+    if (!isClosing) {
+      setMobileOpen(!mobileOpen);
+    }
+  };
 
   // Drawer content with AppLogo and menu items
 
@@ -52,7 +53,7 @@ const ResponsiveDrawer: React.FC<Props> = (props: Props) => {
       <CssBaseline />
 
       {/* Header AppBar */}
-      {/* <HeaderAppBar handleDrawerToggle={handleDrawerToggle} /> */}
+      <HeaderAppBar handleDrawerToggle={handleDrawerToggle} />
 
       {/* Navigation Drawer */}
       <Box
@@ -64,8 +65,8 @@ const ResponsiveDrawer: React.FC<Props> = (props: Props) => {
         <MobileDrawer
           container={container}
           drawerWidth={drawerWidth}
-          // handleDrawerClose={handleDrawerClose}
-          // handleDrawerTransitionEnd={handleDrawerTransitionEnd}
+          handleDrawerClose={handleDrawerClose}
+          handleDrawerTransitionEnd={handleDrawerTransitionEnd}
           mobileOpen={mobileOpen}
         >
           <DrawerContent drawerWidth={drawerWidth} />

@@ -13,7 +13,23 @@ import { Edit, Trash2 } from "lucide-react";
 import { supabase } from "../../../lib/supabase";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const CustomTable = ({ transactions, setEditingTransaction, editingTransaction, userId }) => {
+// Define the Transaction interface
+interface Transaction {
+  id: number;
+  amount: number;
+  category: string;
+  type: string;
+  created_at: string;
+}
+
+interface CustomTableProps {
+  transactions: Transaction[];
+  setEditingTransaction: any
+  editingTransaction: Transaction | null;
+  userId: string;
+}
+
+const CustomTable: React.FC<CustomTableProps> = ({ transactions, setEditingTransaction, editingTransaction, userId }) => {
   const queryClient = useQueryClient();
 
   // Delete transaction function
@@ -68,7 +84,7 @@ const CustomTable = ({ transactions, setEditingTransaction, editingTransaction, 
               type="number"
               defaultValue={transaction.amount}
               onChange={(e) =>
-                setEditingTransaction((prev) =>
+                setEditingTransaction((prev:any) =>
                   prev ? { ...prev, amount: parseFloat(e.target.value) } : null
                 )
               }
@@ -78,7 +94,7 @@ const CustomTable = ({ transactions, setEditingTransaction, editingTransaction, 
             <Input
               defaultValue={transaction.category}
               onChange={(e) =>
-                setEditingTransaction((prev) =>
+                setEditingTransaction((prev:any) =>
                   prev ? { ...prev, category: e.target.value } : null
                 )
               }
